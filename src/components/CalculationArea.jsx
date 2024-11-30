@@ -32,7 +32,7 @@ const CalculationArea = ({ rows }) => {
     <div className="mt-4 p-6 w-full">
       <Step1 rows={rows} C1={C1} C2={C2} />
       <Step2 rows={rows} C1={C1} C2={C2} />
-      <Step3 />
+      <Step3 rows={rows} C1={C1} C2={C2} />
     </div>
   );
 };
