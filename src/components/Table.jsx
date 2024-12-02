@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import { motion } from "motion/react";
 
-const Table = ({ rows, setRows,setShow }) => {
+const Table = ({ rows, setRows, setShow }) => {
   const defaultRow = { x: "", y: "", c1: "", c2: "" };
   const [error, setError] = useState(null);
 
@@ -63,7 +64,8 @@ const Table = ({ rows, setRows,setShow }) => {
 
   const handleCalculate = () => {
     if (validateFields()) {
-      setShow(true);
+      setShow(false); // Temporarily hide CalculationArea
+      setTimeout(() => setShow(true), 300);
     }
   };
 
@@ -89,7 +91,7 @@ const Table = ({ rows, setRows,setShow }) => {
           <div className="flex-1 p-2 border border-gray-300 text-center">
             C2
           </div>
-          <div className="w-24 p-2"></div>
+          <div className="w-12 p-2"></div>
         </div>
 
         {rows.map((row, index) => (
@@ -110,8 +112,10 @@ const Table = ({ rows, setRows,setShow }) => {
                 />
               </div>
             ))}
-            <div className="w-24 p-2 text-center">
-              <button
+            <div className="w-12 p-2 text-center">
+              <motion.button
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => removeRow(index)}
                 disabled={rows.length <= 4}
                 className={`px-3 py-1 rounded text-white ${
@@ -121,25 +125,29 @@ const Table = ({ rows, setRows,setShow }) => {
                 }`}
               >
                 X
-              </button>
+              </motion.button>
             </div>
           </div>
         ))}
       </div>
 
       <div className="flex flex-col gap-2 mt-4">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.95 }}
           onClick={addRow}
           className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Add Row
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.95 }}
           onClick={handleCalculate}
           className="w-full py-2 bg-lime-500 text-white rounded hover:bg-lime-600"
         >
           Calculate
-        </button>
+        </motion.button>
       </div>
     </div>
   );
