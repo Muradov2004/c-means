@@ -1,0 +1,11 @@
+# Allow all search engines to crawl the site
+User-agent: *
+
+# Block the _next directory (Next.js internal files)
+Disallow: /_next/
+
+# Allow everything else to be crawled
+Allow: /
+
+# Provide the location of your sitemap for better indexing
+Sitemap: https://yourdomain.com/sitemap.xml
